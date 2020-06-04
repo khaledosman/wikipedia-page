@@ -39,21 +39,27 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Solution
-This project is a Progressive Web App that shows information about a specific character from Wikipedia's public API. Being a progressive web app means it can run in any network condition even offline once cached after the first visit.
-
-The project uses the new experimental React concurrent mode.
-
-I used explaintext property of Wikipedia API to get the response in text format rather than HTML in order to avoid setting the html of the page manually for security reasons to avoid xss attacks.
-
 ## Linting
 run `yarn lint` to lint the project and `yarn lint:fix` to automatically fix automatically fixable lint issues
 husky is installed to automatically fix lint issues on commits
 
-## Progressive Web Apps
-In order to enhance the PWA capabilities, custom service worker code can be written in `sw-epilog.js`, to be appended to the built service worker file by PWA to avoid ejecting from create-react-app
+## Solution
+This project is a Progressive Web App that shows information about a specific item from Wikipedia's public API.
+Being a progressive web app means it can run in any network condition even offline once cached after the first visit.
 
-Some extra work was added to show "Content cached for offline usage" message, click-to-update functionality, caching get requests etc.. which I used from an older project https://github.com/khaledosman/create-react-pwa/blob/master/src/sw-epilog.js
+The project uses the new experimental React concurrent mode (for funsies).
+
+I used the new Wikipedia API to get the response in text format rather than HTML in order to avoid setting the html of the page manually for security reasons to avoid xss attacks.
+
+## Progressive Web App setup
+In order to enhance the PWA capabilities, custom service worker code can be written in `sw-epilog.js` which will be appended to the built service worker file by PWA in order to customize the service worker without ejecting from create-react-app
+
+Custom PWA features added are:
+1. "Content cached for offline usage" message
+1. click-to-update functionality
+1. caching get requests
+1. Show "user is online/offline" message 
+This cose I reused from an older template project https://github.com/khaledosman/create-react-pwa
 
 ## Deployment
 Netlify is used for deployment since its the easiest and fastest to work with, also gives automated deployments/previews for each commit / branch.
