@@ -44,3 +44,12 @@ The project uses the new experimental React concurrent mode.
 
 ## Linting
 run `yarn lint` to lint the project and `yarn lint:fix` to automatically fix automatically fixable lint issues
+husky is installed to automatically fix lint issues on commits
+
+## Progressive Web Apps
+In order to enhance the PWA capabilities, custom service worker code can be written in `sw-epilog.js`, to be appended to the built service worker file by PWA to avoid ejecting from create-react-app
+
+Some extra work was added to show "Content cached for offline usage" message, click-to-update functionality, caching get requests etc.. which I used from an older project https://github.com/khaledosman/create-react-pwa/blob/master/src/sw-epilog.js
+
+## Deployment
+Netlify is used for deployment since its the easiest and fastest to work with, also gives automated deployments/previews for each commit / branch.

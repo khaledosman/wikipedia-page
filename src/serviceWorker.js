@@ -20,6 +20,16 @@ const isLocalhost = Boolean(
     )
 )
 
+function handleNetworkChange (config) {
+  if (config && config.onOffline && config.onOnline) {
+    if (navigator.onLine) {
+      config.onOnline()
+    } else {
+      config.onOffline()
+    }
+  }
+}
+
 export function register (config) {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
@@ -51,6 +61,8 @@ export function register (config) {
         registerValidSW(swUrl, config)
       }
     })
+    window.addEventListener('offline', () => handleNetworkChange(config))
+    window.addEventListener('online', () => handleNetworkChange(config))
   }
 }
 
@@ -122,6 +134,10 @@ function checkValidServiceWorker (swUrl, config) {
       }
     })
     .catch(() => {
+      if (config && config.onOffline) {
+        config.onOffline()
+      }
+
       console.log(
         'No internet connection found. App is running in offline mode.'
       )

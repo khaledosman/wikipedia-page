@@ -1,10 +1,11 @@
 import React from 'react'
 import logo from './logo.svg'
 import './App.css'
-
+import { Notifier } from './components/Notifier'
 function App () {
   return (
     <div className='App'>
+      <Notifier />
       <header className='App-header'>
         <img src={logo} className='App-logo' alt='logo' />
         <p>
