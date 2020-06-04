@@ -42,6 +42,8 @@ This project is a Progressive Web App that shows information about a specific ch
 
 The project uses the new experimental React concurrent mode.
 
+I used explaintext property of Wikipedia API to get the response in text format rather than HTML in order to avoid setting the html of the page manually for security reasons to avoid xss attacks.
+
 ## Linting
 run `yarn lint` to lint the project and `yarn lint:fix` to automatically fix automatically fixable lint issues
 husky is installed to automatically fix lint issues on commits
