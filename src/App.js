@@ -5,7 +5,6 @@ import { getSummary } from './helpers/wikipedia-api-helpers'
 import { getDefaultLanguage } from './helpers/get-default-language'
 import './App.css'
 import { Notifier } from './components/Notifier'
-import { cachedGet } from './helpers/cached-get'
 
 function App () {
   const [language, setLanguage] = useState(getDefaultLanguage())
@@ -18,8 +17,7 @@ function App () {
   useEffect(() => {
     getSummary(phrase, language)
       .then((res) => {
-        setWikipediaInfo({ content: res.extract, image: res.thumbnail.source })
-        cachedGet(res.thumbnail.source) // cache the image
+        setWikipediaInfo({ content: res.extract, image: { ...res.thumbnail } })
       })
     return () => {
       // ~TODO cancel axios request
